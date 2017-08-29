@@ -1,2 +1,9 @@
 FROM alpine
-RUN apk add --update py-pip && pip install python-swiftclient==3.3.0 && rm -rf /var/cache/apk/*
+RUN apk add --no-cache git py-pip && \
+  cd /root && \
+  git clone https://github.com/maitai/python-swiftclient python-swiftclient && \
+  cd python-swiftclient && \
+  pip install . && \
+  cd /root / && \
+  rm -rf /root/python-swiftclient/ && \
+  apk del git
